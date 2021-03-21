@@ -1,0 +1,160 @@
+{
+  "created_at": "Sun Feb 07 06:16:54 +0000 2021",
+  "id": 1358298673289916400,
+  "id_str": "1358298673289916416",
+  "text": "(((병인 트친소)))\n병인이 편집본 만드는 중이고\n송아지눈에 감겨서 여기까지 왔네요\n같이 병인 오라버니 하실 분?\n마음이나 흔적 남겨주시면 찾아가요~\n#트친소 #병인 #소친놈 https://t.co/TM6YxKw4QS",
+  "display_text_range": [0, 98],
+  "source": "<a href=\"http://twitter.com/download/android\" rel=\"nofollow\">Twitter for Android</a>",
+  "truncated": false,
+  "in_reply_to_status_id": null,
+  "in_reply_to_status_id_str": null,
+  "in_reply_to_user_id": null,
+  "in_reply_to_user_id_str": null,
+  "in_reply_to_screen_name": null,
+  "user": {
+    "id": 1345684035452866600,
+    "id_str": "1345684035452866561",
+    "name": "다정도병인냥하여🖤",
+    "screen_name": "queen1120000",
+    "location": null,
+    "url": null,
+    "description": "철인왕후 편집본 병인 ver. 작업중 Edited versions of Byungin clips (Queen Cheorin)",
+    "translator_type": "none",
+    "protected": false,
+    "verified": false,
+    "followers_count": 19,
+    "friends_count": 12,
+    "listed_count": 0,
+    "favourites_count": 110,
+    "statuses_count": 109,
+    "created_at": "Sun Jan 03 10:50:56 +0000 2021",
+    "utc_offset": null,
+    "time_zone": null,
+    "geo_enabled": false,
+    "lang": null,
+    "contributors_enabled": false,
+    "is_translator": false,
+    "profile_background_color": "F5F8FA",
+    "profile_background_image_url": "",
+    "profile_background_image_url_https": "",
+    "profile_background_tile": false,
+    "profile_link_color": "1DA1F2",
+    "profile_sidebar_border_color": "C0DEED",
+    "profile_sidebar_fill_color": "DDEEF6",
+    "profile_text_color": "333333",
+    "profile_use_background_image": true,
+    "profile_image_url": "http://pbs.twimg.com/profile_images/1357314249505181697/5nDJvOW4_normal.jpg",
+    "profile_image_url_https": "https://pbs.twimg.com/profile_images/1357314249505181697/5nDJvOW4_normal.jpg",
+    "default_profile": true,
+    "default_profile_image": false,
+    "following": null,
+    "follow_request_sent": null,
+    "notifications": null
+  },
+  "geo": null,
+  "coordinates": null,
+  "place": null,
+  "contributors": null,
+  "is_quote_status": false,
+  "quote_count": 0,
+  "reply_count": 0,
+  "retweet_count": 0,
+  "favorite_count": 0,
+  "entities": {
+    "hashtags": [{
+      "text": "트친소",
+      "indices": [85, 89]
+    }, {
+      "text": "병인",
+      "indices": [90, 93]
+    }, {
+      "text": "소친놈",
+      "indices": [94, 98]
+    }],
+    "urls": [],
+    "user_mentions": [],
+    "symbols": [],
+    "media": [{
+      "id": 1358298632793989000,
+      "id_str": "1358298632793989120",
+      "indices": [99, 122],
+      "media_url": "http://pbs.twimg.com/tweet_video_thumb/EtmlaPKVoAAimYN.jpg",
+      "media_url_https": "https://pbs.twimg.com/tweet_video_thumb/EtmlaPKVoAAimYN.jpg",
+      "url": "https://t.co/TM6YxKw4QS",
+      "display_url": "pic.twitter.com/TM6YxKw4QS",
+      "expanded_url": "https://twitter.com/queen1120000/status/1358298673289916416/photo/1",
+      "type": "photo",
+      "sizes": {
+        "thumb": {
+          "w": 150,
+          "h": 150,
+          "resize": "crop"
+        },
+        "small": {
+          "w": 650,
+          "h": 366,
+          "resize": "fit"
+        },
+        "medium": {
+          "w": 650,
+          "h": 366,
+          "resize": "fit"
+        },
+        "large": {
+          "w": 650,
+          "h": 366,
+          "resize": "fit"
+        }
+      }
+    }]
+  },
+  "extended_entities": {
+    "media": [{
+      "id": 1358298632793989000,
+      "id_str": "1358298632793989120",
+      "indices": [99, 122],
+      "media_url": "http://pbs.twimg.com/tweet_video_thumb/EtmlaPKVoAAimYN.jpg",
+      "media_url_https": "https://pbs.twimg.com/tweet_video_thumb/EtmlaPKVoAAimYN.jpg",
+      "url": "https://t.co/TM6YxKw4QS",
+      "display_url": "pic.twitter.com/TM6YxKw4QS",
+      "expanded_url": "https://twitter.com/queen1120000/status/1358298673289916416/photo/1",
+      "type": "animated_gif",
+      "video_info": {
+        "aspect_ratio": [325, 183],
+        "variants": [{
+          "bitrate": 0,
+          "content_type": "video/mp4",
+          "url": "https://video.twimg.com/tweet_video/EtmlaPKVoAAimYN.mp4"
+        }]
+      },
+      "sizes": {
+        "thumb": {
+          "w": 150,
+          "h": 150,
+          "resize": "crop"
+        },
+        "small": {
+          "w": 650,
+          "h": 366,
+          "resize": "fit"
+        },
+        "medium": {
+          "w": 650,
+          "h": 366,
+          "resize": "fit"
+        },
+        "large": {
+          "w": 650,
+          "h": 366,
+          "resize": "fit"
+        }
+      }
+    }]
+  },
+  "favorited": false,
+  "retweeted": false,
+  "possibly_sensitive": false,
+  "filter_level": "low",
+  "lang": "ko",
+  "timestamp_ms": "1612678614338"
+}

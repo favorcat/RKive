@@ -1,29 +1,39 @@
 <template>
   <div class="App">
     <header class="App-header">
-      <img src="/logo.svg" class="App-logo" alt="logo" />
+    <!-- <img src="/logo.svg" class="App-logo" alt="logo" /> -->
       <p>
-        Edit
-        <code>src/App.vue</code> and save to reload.
+        Rkive
       </p>
-      <a
+
+      <!-- <a
         class="App-link"
         href="https://vuejs.org"
         target="_blank"
         rel="noopener noreferrer"
-      >{{ message }}</a>
+      >{{ message }}</a> -->
     </header>
+    
+    <nameBox></nameBox>
   </div>
+
+
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      message: "Learn Vue"
-    };
-  }
-};
+  import nameBox from './components/nameBox.vue'
+
+  export default {
+    data() {
+      return {
+        message: "Learn Vue"
+      };
+    },
+
+    components: {
+      'nameBox' : nameBox
+    }
+  };
 </script>
 
 <style>
@@ -33,7 +43,7 @@ export default {
 .App-header {
   background-color: #f9f6f6;
   color: #32485f;
-  min-height: 100vh;
+  min-height: 10vh;
   display: flex;
   flex-direction: column;
   align-items: center;
