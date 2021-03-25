@@ -35,14 +35,14 @@
   <div>
 
     <div class="tweetBox" v-if="currentHash === 'ALL'">
-      <div :class="{clicked: currentHash == hash}" @click="currentHash = hash">
+      <div :class="{clicked: currentHash == hash}">
         <div class="user">
           <img class="profile" :src="tweet.user.profile_image_url_https"> 
           {{tweet.user.name}}<br>
           @{{tweet.user.screen_name}}<br>
         </div>
           {{tweet.text}} <br>
-          <img :src="tweet.media.media_url">
+          <img :src="tweet.media[0].media_url_https">
       </div>
     </div>
     
