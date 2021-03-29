@@ -22,6 +22,7 @@
 
 <script>
   import nameBox from './components/nameBox.vue'
+  
 
   export default {
     data() {
@@ -39,6 +40,7 @@
 <style>
 .App {
   text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Malgun Gothic', 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 .App-header {
   background-color: #f9f6f6;
