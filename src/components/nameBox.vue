@@ -42,7 +42,8 @@
           @{{tweet.user.screen_name}}<br>
         </div>
           {{tweet.text}} <br>
-          <img :src="tweet.media[0].media_url_https">
+          <img :src="tweet.media[0].media_url_https"
+               width= "230">
       </div>
     </div>
     
@@ -78,6 +79,12 @@ a {
   text-align: left;
   width: 230px;
   height: auto;
+
+  border-style: solid;
+  border-width: 1px;
+  border-color:#cac1c1;
+  border-radius: 10px;
+  padding: 10px;
 }
 
 .profile{ 
