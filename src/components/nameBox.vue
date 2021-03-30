@@ -37,7 +37,7 @@
         <div class="container" v-if="currentAccount === 'weverseshop'">
           <a :class="{ clicked: currentAccount == 'weverseshop' }" @click="currentHash = '#BTS'">#BTS</a>
         </div>
-        
+
         <!-- 캠페인 -->
         <div class="container" v-if="currentAccount === 'bts_love_myself'">
           <a :class="{ clicked: currentAccount == 'bts_love_myself' }" @click="currentHash = '#BTS'">#BTS</a>
@@ -144,6 +144,8 @@ a {
   border-radius: 10px;
   padding: 10px;
   display: inline-block;
+
+  margin-bottom: 20px;
 }
 
 .tweetBox-wrapper {
