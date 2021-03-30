@@ -1,35 +1,60 @@
 <template>
 <!-- eslint-disable vue/no-use-v-if-with-v-for,vue/no-confusing-v-for-v-if -->
 <div>
-  <div>
-        <!-- 계정 메뉴 -->
-        <div class="container">
-            <a v-for = "name in account" :key = "name" :class="{ clicked: currentAccount == name }" @click="currentAccount = name"> {{ name }} </a>
-        </div>
+  <div class="account-wrapper">
+      <!-- 계정 메뉴 -->
+      <div class="container">
+        <a v-for = "name in account" :key = "name" :class="{ clicked: currentAccount == name }" @click="currentAccount = name"> {{ name }} </a>
+      </div>
   </div>
   <div class="divider"/>
 
+<!-- 해시태그 -->
   <div class="hashtag-wrapper">
-        <!-- 해시태그 -->
+        <!-- 방탄 전용 공계-->
         <div class="container" v-if="currentAccount === 'BTS_twt'" :key="i">
           <a v-for="hash in bts_twt" :key="hash" :class="{ clicked: currentHash == hash }" @click="currentHash = hash"> {{ hash }}</a>
         </div>
         <div class="container" v-if="currentAccount === 'bts_bighit'">
           <a v-for="hash in bts_official" :key="hash" :class="{ clicked: currentHash == hash }" @click="currentHash = hash"> {{ hash }}</a>
         </div>
+        <div class="container" v-if="currentAccount === 'BTS_jp_official'">
+          <a :key="hash" :class="{ clicked: currentAccount == 'BTS_jp_official' }" @click="currentHash = '#BTS'">#BTS</a>
+        </div>
+
+        <!-- 소속사 공계 -->
         <div class="container" v-if="currentAccount === 'BigHitEnt'">
           <a :key="hash" :class="{ clicked: currentAccount == 'BigHitEnt' }" @click="currentHash = '#BTS'">#BTS</a>
         </div>
-        <div class="container" v-if="currentAccount === 'weverse'">
-          <a :key="hash" :class="{ clicked: currentAccount == 'weverse' }" @click="currentHash = '#BTS'">#BTS</a>
+        <div class="container" v-if="currentAccount === 'weverseofficial'">
+          <a :key="hash" :class="{ clicked: currentAccount == 'weverseofficial' }" @click="currentHash = '#BTS'">#BTS</a>
         </div>
+
+        <!-- 굿즈 공계 -->
         <div class="container" v-if="currentAccount === 'bighit_merch'">
           <a :key="hash" :class="{ clicked: currentAccount == 'bighit_merch' }" @click="currentHash = '#BTS'">#BTS</a>
         </div>
         <div class="container" v-if="currentAccount === 'weverseshop'">
           <a :class="{ clicked: currentAccount == 'weverseshop' }" @click="currentHash = '#BTS'">#BTS</a>
         </div>
+        
+        <!-- 캠페인 -->
+        <div class="container" v-if="currentAccount === 'bts_love_myself'">
+          <a :class="{ clicked: currentAccount == 'bts_love_myself' }" @click="currentHash = '#BTS'">#BTS</a>
+        </div>
+
+        <!-- 캐릭터 공계 -->
+        <div class="container" v-if="currentAccount === 'BT21_'">
+          <a :class="{ clicked: currentAccount == 'BT21_' }" @click="currentHash = '#BTS'">#BTS</a>
+        </div>
+        <div class="container" v-if="currentAccount === 'BT21_Japan'">
+          <a :class="{ clicked: currentAccount == 'BT21_Japan' }" @click="currentHash = '#BTS'">#BTS</a>
+        </div>
+        <div class="container" v-if="currentAccount === 'TinyTANofficial'">
+          <a :class="{ clicked: currentAccount == 'TinyTANofficial' }" @click="currentHash = '#BTS'">#BTS</a>
+        </div>
   </div>
+ 
   <div class="divider"/>
 
   <!-- 트윗 카드 -->
