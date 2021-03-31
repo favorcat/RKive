@@ -1,20 +1,18 @@
 <template>
   <div class="App">
     <header class="App-header">
-    <!-- <img src="/logo.svg" class="App-logo" alt="logo" /> -->
-      <p>
-        Rkive
-      </p>
-
-      <!-- <a
-        class="App-link"
-        href="https://vuejs.org"
-        target="_blank"
-        rel="noopener noreferrer"
-      >{{ message }}</a> -->
+      <img src="/logo.png" class="App-logo" alt="logo" />
+        <!-- <a
+          class="App-link"
+          href="https://vuejs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >{{ message }}</a> -->
+      <nameBox/>
     </header>
-    
-    <nameBox></nameBox>
+    <div class="tweet">
+      <tweetBox/>
+    </div>
   </div>
 
 
@@ -22,51 +20,42 @@
 
 <script>
   import nameBox from './components/nameBox.vue'
+  import tweetBox from './components/tweetBox.vue'
   
-
   export default {
-    data() {
-      return {
-        message: "Learn Vue"
-      };
-    },
-
     components: {
-      'nameBox' : nameBox
+      'nameBox' : nameBox,
+      'tweetBox' : tweetBox
     }
   };
 </script>
 
 <style>
 .App {
-  text-align: center;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Malgun Gothic', 'Open Sans', 'Helvetica Neue', sans-serif;
+  display: flex;
+  flex-direction:column;
 }
 .App-header {
-  background-color: #f9f6f6;
-  color: #32485f;
-  min-height: 10vh;
+  min-height: 200px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+
 }
-.App-link {
-  color: #00c185;
-}
+
 .App-logo {
-  height: 40vmin;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
   pointer-events: none;
-  margin-bottom: 1rem;
-  animation: App-logo-spin infinite 1.6s ease-in-out alternate;
+  margin: 30px;
 }
-@keyframes App-logo-spin {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.06);
-  }
+
+.tweet {
+  display: flex;
+  flex-direction: row;
 }
+
 </style>
