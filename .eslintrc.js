@@ -1,19 +1,18 @@
 module.exports = {
-    env: {
-      browser: true,
-      commonjs: true,
-      es6: true,
-      node: true
-    },
-    extends: [
-      'standard',
-      'plugin:vue/vue3-recommended'
-    ],
-    globals: {
-      Atomics: 'readonly',
-      SharedArrayBuffer: 'readonly'
-    },
-    parserOptions: {
-      ecmaVersion: 2018
-    }
-  }
+  root: true,
+  env: {
+    node: true,
+  },
+  extends: [
+    'plugin:vue/essential',
+    '@vue/airbnb',
+  ],
+  parserOptions: {
+    parser: 'babel-eslint',
+  },
+  rules: {
+    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'max-len': 'off',
+  },
+};

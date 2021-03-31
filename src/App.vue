@@ -15,19 +15,18 @@
     </div>
   </div>
 
-
 </template>
 
 <script>
-  import nameBox from './components/nameBox.vue'
-  import tweetBox from './components/tweetBox.vue'
-  
-  export default {
-    components: {
-      'nameBox' : nameBox,
-      'tweetBox' : tweetBox
-    }
-  };
+import nameBox from './components/nameBox.vue';
+import tweetBox from './components/tweetBox.vue';
+
+export default {
+  components: {
+    nameBox,
+    tweetBox,
+  },
+};
 </script>
 
 <style>

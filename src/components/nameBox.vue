@@ -4,60 +4,85 @@
   <!-- 카테고리 -->
   <div class="category-wrapper">
     <div class="container">
-      <a v-for="menu in category" :key="menu" :class="{ clicked: currentCategory == menu }" @click="currentCategory = menu"> {{ menu }} </a>
+      <a v-for="menu in category" :key="menu" :class="{ clicked: $store.state.currentCategory == menu }" @click="current(menu)"> {{ menu }} </a>
     </div>
   </div>
 </div>
 </template>
 
 <script>
-import axios from 'axios'
 export default {
   data() {
     return {
-        currentCategory: 'BTS',
-        currentAccount: 'BTS_twt',
-        currentHash: 'ALL',
-        category: ['BTS', 'HYBE', 'Merch', 'Project', 'Character', 'Game'],
-
-        tweet: [],
-        columnCount: 5,
-      };
+      category: ['BTS', 'HYBE', 'Merch', 'Project', 'Character', 'Game'],
+      btsAccount: ['BTS_twt', 'bts_bighit', 'BTS_jp_official'],
+      hybeAccount: ['BIGHIT_MUSIC', 'weverseofficial', 'HYBEOFFICIALtwt', 'HYBE_LABELS_JP'],
+      merchAccount: ['weverseshop', 'HYBE_MERCH', 'BigHitShop'],
+      projectAccount: ['bts_love_myself', 'Smeraldo_Books', 'INTHESOOP_TV'],
+      charAccount: ['BT21_', 'BT21_Japan', 'TinyTANofficial'],
+      gameAccount: ['BTSW_official', 'RhythmHive_twt'],
+      tweet: [],
+      columnCount: 5,
+    };
+  },
+  created() {
+    window.addEventListener('resize', this.calculateColumn);
+    this.calculateColumn();
+    this.$axios.get(`https://api.rkive.cloud/from/id/${this.$store.state.currentAccount}/0`)
+      .then((res) => {
+        this.tweet = res.data;
+      });
+  },
+  methods: {
+    calculateColumn() {
+      this.columnCount = Math.floor(window.innerWidth / 300);
     },
-    created() {
-      window.addEventListener("resize", this.calculateColumn);
-      this.calculateColumn()
-      axios.get(`https://api.rkive.cloud/from/id/${this.currentAccount}/0`)
-        .then((res) => {
-          this.tweet = res.data;
-        });
-    },
-    methods: {
-      calculateColumn() {
-        this.columnCount = Math.floor(window.innerWidth / 300);
-      },
-      requestData() {
-        if (this.currentHash === 'ALL') {
-          axios.get(`https://api.rkive.cloud/from/id/${this.currentAccount}/0`)
-            .then((res) => {
-              this.tweet = res.data;
-            });
-        }
-        else axios.get(`https://api.rkive.cloud/from/hashtag/${this.currentAccount}/0?hashtag=${encodeURIComponent(this.currentHash)}`)
+    requestData() {
+      if (this.currentHash === 'ALL') {
+        this.$axios.get(`https://api.rkive.cloud/from/id/${this.$store.state.currentAccount}/0`)
+          .then((res) => {
+            this.tweet = res.data;
+          });
+      } else {
+        this.$axios.get(`https://api.rkive.cloud/from/hashtag/${this.$store.state.currentAccount}/0?hashtag=${encodeURIComponent(this.$store.state.currentHash)}`)
           .then((res) => {
             this.tweet = res.data;
           });
       }
     },
-    watch: {
-      currentAccount() {
-        this.requestData();
-      },
-      currentHash() {
-        this.requestData();
+    current(menu) {
+      this.$store.state.currentCategory = menu;
+      switch (this.$store.state.currentCategory) {
+        case 'BTS':
+          this.$store.state.currentAccount = 'BTS_twt';
+          this.$store.state.currentHash = 'ALL';
+          break;
+        case 'HYBE':
+          this.$store.state.currentAccount = 'BIGHIT_MUSIC';
+          this.$store.state.currentHash = '#BTS';
+          break;
+        case 'Merch':
+          this.$store.state.currentAccount = 'weverseshop';
+          this.$store.state.currentHash = '#BTS';
+          break;
+        case 'Project':
+          this.$store.state.currentAccount = 'bts_love_myself';
+          this.$store.state.currentHash = 'ALL';
+          break;
+        case 'Character':
+          this.$store.state.currentAccount = 'BT21_';
+          this.$store.state.currentHash = 'ALL';
+          break;
+        case 'Game':
+          this.$store.state.currentAccount = 'BTSW_official';
+          this.$store.state.currentHash = 'ALL';
+          break;
+        default:
+          break;
       }
-    }
-}
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -67,7 +92,7 @@ a {
   }
 .nameBox{
   width: 900px;
-} 
+}
 
 .category-wrapper{
   text-size-adjust: 12px;
