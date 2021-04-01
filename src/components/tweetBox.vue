@@ -38,11 +38,17 @@
         </div>
 
         <!-- HYBE 공계 -->
-        <div class="container">
-          <a v-for="(name, i) in hybeAccount"
-          v-if="$store.state.currentAccount === name"
-          :class="{ clicked: $store.state.currentAccount == name }"
-          @click="$store.state.currentHash = '#BTS'" :key="i">#BTS</a>
+        <div class="container" v-if="currentAccount === 'BIGHIT_MUSIC'">
+          <a v-for="hash in bighitmusic" :key="hash" :class="{ clicked: $store.state.currentHash == hash }" @click="$store.state.currentHash = hash"> {{ hash }}</a>
+        </div>
+        <div class="container" v-if="currentAccount === 'weverseofficial'">
+          <a v-for="hash in weverseofficial" :key="hash" :class="{ clicked: $store.state.currentHash == hash }" @click="$store.state.currentHash = hash"> {{ hash }}</a>
+        </div>
+        <div class="container" v-if="currentAccount === 'HYBEOFFICIALtwt'">
+          <a :class="{ clicked: $store.state.currentAccount == 'HYBEOFFICIALtwt' }" @click="$store.state.currentHash = '#BTS'">#BTS</a>
+        </div>
+        <div class="container" v-if="currentAccount === 'HYBE_LABELS_JP'">
+          <a :class="{ clicked: $store.state.currentAccount == 'HYBE_LABELS_JP' }" @click="$store.state.currentHash = '#BTS'">#BTS</a>
         </div>
 
         <!-- Merch 공계 -->
@@ -85,17 +91,17 @@
   <div class="tweetBox-wrapper" :style="`column-count: ${columnCount}`">
     <masonry :cols="columnCount" :gutter="30">
       <div class="tweetBox" v-for="(v, i) in tweet" :key="i">
-        <div>
-          <div class="user">
+        <div class="content">
+          <div class="user-container" @click="viewID()">
             <img class="profileImg" :src="v.user.profile_image_url_https">
-            <div class="userID">
+            <div class="user">
               {{v.user.name}}<br>
               @{{v.user.screen_name}}
             </div>
           </div>
-          <div class="text"> {{v.text}} </div>
-          <div class="media">
-              <img v-if="v.media !== undefined" :src="v.media[0].media_url_https" width= "230">
+          <div class="text-container" @click="viewTweet()">{{v.text}}</div>
+          <div class="media" @click="downMedia(v.id, v.media[0].id, v.media[0].type)">
+              <img v-if="v.media !== undefined" :href="`https://twitter.com/${v.user.screen_name}`" :src="v.media[0].media_url_https" width= "230" >
           </div>
         </div>
       </div>
@@ -110,16 +116,20 @@ export default {
   data() {
     return {
       category: ['BTS', 'HYBE', 'Merch', 'Project', 'Character', 'Game'],
+
       btsAccount: ['BTS_twt', 'bts_bighit', 'BTS_jp_official'],
       hybeAccount: ['BIGHIT_MUSIC', 'weverseofficial', 'HYBEOFFICIALtwt', 'HYBE_LABELS_JP'],
       merchAccount: ['weverseshop', 'HYBE_MERCH', 'BigHitShop'],
       projectAccount: ['bts_love_myself', 'Smeraldo_Books', 'INTHESOOP_TV'],
       charAccount: ['BT21_', 'BT21_Japan', 'TinyTANofficial'],
       gameAccount: ['BTSW_official', 'RhythmHive_twt'],
+
       bts_twt: ['ALL', '#JIN', '#SUGA', '#RM', '#JHope', '#JIMIN', '#V', '#JK', '#김데일리', '#홉필름', '#우리아미상받았네'],
       bts_bighit: ['ALL', '[공지]', '#오늘의방탄', '#방탄밤'],
-      bighit: ['#BTS'],
-      inthesoop_tv: ['BTS', '방탄소년단'],
+      bighitmusic: ['ALL', '#BTS', '[기사]', '[위버스 매거진]'],
+      hybe: ['ALL', '#BTS', '#방탄소년단'],
+      weverseofficial: ['ALL', '[위버스 매거진]'],
+      inthesoop_tv: ['ALL', 'BTS', '방탄소년단'],
       btsw_official: ['ALL', '업데이트', '점검'],
       rhythmhive_twt: ['ALL', 'BTS', 'EVENT'],
       tweet: [],
@@ -149,6 +159,19 @@ export default {
           .then((res) => {
             this.tweet = res.data;
           });
+      }
+    },
+    viewID() {
+      window.open(`https://twitter.com/${this.$store.state.currentAccount}`);
+    },
+    viewTweet() {
+      window.open(`https://twitter.com/${this.$store.state.currentAccount}`);
+    },
+    downMedia(id, mediaId, type) {
+      if (type === 'photo') {
+        window.open(`https://btstweetmedia.blob.core.windows.net/media/${id}/${mediaId}.png`);
+      } else {
+        window.open(`https://btstweetmedia.blob.core.windows.net/media/${id}/${mediaId}.mp4`);
       }
     },
   },
@@ -198,6 +221,16 @@ a {
   flex-wrap: wrap;
   align-items: flex-start;
 }
+
+.tweetBox-wrapper > div {
+  width: 100%;
+}
+
+.user-container{
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 10px;
+}
 .profileImg{
   border-radius: 70%;
   overflow: hidden;
@@ -206,14 +239,13 @@ a {
 }
 .user{
     display: flex;
-    flex-direction: row;
-    padding-bottom: 10px;
-}
-.userID{
-    display: flex;
     flex-direction: column;
     padding-left: 10px;
-    padding-top: 5px;
+    padding-top: 7px;
+}
+.twtID{
+  color: rgb(34, 148, 255);
+  font-size: small;
 }
 .media{
     width: 200px;
