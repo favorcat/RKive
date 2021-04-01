@@ -15,12 +15,6 @@ export default {
   data() {
     return {
       category: ['BTS', 'HYBE', 'Merch', 'Project', 'Character', 'Game'],
-      btsAccount: ['BTS_twt', 'bts_bighit', 'BTS_jp_official'],
-      hybeAccount: ['BIGHIT_MUSIC', 'weverseofficial', 'HYBEOFFICIALtwt', 'HYBE_LABELS_JP'],
-      merchAccount: ['weverseshop', 'HYBE_MERCH', 'BigHitShop'],
-      projectAccount: ['bts_love_myself', 'Smeraldo_Books', 'INTHESOOP_TV'],
-      charAccount: ['BT21_', 'BT21_Japan', 'TinyTANofficial'],
-      gameAccount: ['BTSW_official', 'RhythmHive_twt'],
       tweet: [],
       columnCount: 5,
     };
@@ -59,7 +53,7 @@ export default {
           break;
         case 'HYBE':
           this.$store.state.currentAccount = 'BIGHIT_MUSIC';
-          this.$store.state.currentHash = '#BTS';
+          this.$store.state.currentHash = 'ALL';
           break;
         case 'Merch':
           this.$store.state.currentAccount = 'weverseshop';
