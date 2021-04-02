@@ -46,30 +46,25 @@ export default {
     },
     current(menu) {
       this.$store.state.currentCategory = menu;
+      this.$store.state.currentHash = 'ALL';
       switch (this.$store.state.currentCategory) {
         case 'BTS':
           this.$store.state.currentAccount = 'BTS_twt';
-          this.$store.state.currentHash = 'ALL';
           break;
         case 'HYBE':
           this.$store.state.currentAccount = 'BIGHIT_MUSIC';
-          this.$store.state.currentHash = 'ALL';
           break;
         case 'Merch':
           this.$store.state.currentAccount = 'weverseshop';
-          this.$store.state.currentHash = '#BTS';
           break;
         case 'Project':
           this.$store.state.currentAccount = 'bts_love_myself';
-          this.$store.state.currentHash = 'ALL';
           break;
         case 'Character':
           this.$store.state.currentAccount = 'BT21_';
-          this.$store.state.currentHash = 'ALL';
           break;
         case 'Game':
           this.$store.state.currentAccount = 'BTSW_official';
-          this.$store.state.currentHash = 'ALL';
           break;
         default:
           break;

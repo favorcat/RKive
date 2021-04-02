@@ -5,22 +5,22 @@
     <!-- 계정 메뉴 -->
   <div class="account-wrapper">
       <div class="container" v-if="$store.state.currentCategory === 'BTS'">
-        <a v-for="name in btsAccount" :key="name" :class="{ clicked: $store.state.currentAccount == name }" @click="$store.state.currentAccount=name"> {{ name }} </a>
+        <a v-for="name in btsAccount" :key="name" :class="{ clicked: $store.state.currentAccount == name }" @click="current(name)"> {{ name }} </a>
       </div>
       <div class="container" v-if="$store.state.currentCategory === 'HYBE'">
-        <a v-for="name in hybeAccount" :key="name" :class="{ clicked: $store.state.currentAccount == name }" @click="$store.state.currentAccount=name"> {{ name }} </a>
+        <a v-for="name in hybeAccount" :key="name" :class="{ clicked: $store.state.currentAccount == name }" @click="current(name)"> {{ name }} </a>
       </div>
       <div class="container" v-if="$store.state.currentCategory === 'Merch'">
-        <a v-for="name in merchAccount" :key="name" :class="{ clicked: $store.state.currentAccount == name }" @click="$store.state.currentAccount=name"> {{ name }} </a>
+        <a v-for="name in merchAccount" :key="name" :class="{ clicked: $store.state.currentAccount == name }" @click="current(name)"> {{ name }} </a>
       </div>
       <div class="container" v-if="$store.state.currentCategory === 'Project'">
-        <a v-for="name in projectAccount" :key="name" :class="{ clicked: $store.state.currentAccount == name }" @click="$store.state.currentAccount=name"> {{ name }} </a>
+        <a v-for="name in projectAccount" :key="name" :class="{ clicked: $store.state.currentAccount == name }" @click="current(name)"> {{ name }} </a>
       </div>
       <div class="container" v-if="$store.state.currentCategory === 'Character'">
-        <a v-for="name in charAccount" :key="name" :class="{ clicked: $store.state.currentAccount == name }" @click="$store.state.currentAccount=name"> {{ name }} </a>
+        <a v-for="name in charAccount" :key="name" :class="{ clicked: $store.state.currentAccount == name }" @click="current(name)"> {{ name }} </a>
       </div>
       <div class="container" v-if="$store.state.currentCategory === 'Game'">
-        <a v-for="name in gameAccount" :key="name" :class="{ clicked: $store.state.currentAccount == name }" @click="$store.state.currentAccount=name"> {{ name }} </a>
+        <a v-for="name in gameAccount" :key="name" :class="{ clicked: $store.state.currentAccount == name }" @click="current(name)"> {{ name }} </a>
       </div>
   </div>
 
@@ -34,7 +34,7 @@
           <a v-for="hash in bts_bighit" :key="hash" :class="{ clicked: $store.state.currentHash == hash }" @click="$store.state.currentHash = hash"> {{ hash }}</a>
         </div>
         <div class="container" v-if="$store.state.currentAccount === 'BTS_jp_official'">
-          <a :class="{ clicked: $store.state.currentAccount == 'BTS_jp_official' }" @click="$store.state.currentHash = '#BTS'">#BTS</a>
+          <a :class="{ clicked: $store.state.currentAccount == 'BTS_jp_official' }" @click="$store.state.currentHash = 'ALL'">ALL</a>
         </div>
 
         <!-- HYBE 공계 -->
@@ -45,29 +45,20 @@
           <a v-for="hash in weverseofficial" :key="hash" :class="{ clicked: $store.state.currentHash == hash }" @click="$store.state.currentHash = hash"> {{ hash }}</a>
         </div>
         <div class="container" v-if="currentAccount === 'HYBEOFFICIALtwt'">
-          <a :class="{ clicked: $store.state.currentAccount == 'HYBEOFFICIALtwt' }" @click="$store.state.currentHash = '#BTS'">#BTS</a>
+          <a v-for="hash in hybe" :key="hash" :class="{ clicked: $store.state.currentHash == hash }" @click="$store.state.currentHash = hash"> {{ hash }}</a>
         </div>
         <div class="container" v-if="currentAccount === 'HYBE_LABELS_JP'">
-          <a :class="{ clicked: $store.state.currentAccount == 'HYBE_LABELS_JP' }" @click="$store.state.currentHash = '#BTS'">#BTS</a>
+          <a v-for="hash in hybe" :key="hash" :class="{ clicked: $store.state.currentHash == hash }" @click="$store.state.currentHash = hash"> {{ hash }}</a>
         </div>
 
         <!-- Merch 공계 -->
-        <div class="container">
-          <a v-for="(name, i) in merchAccount"
-          v-if="$store.state.currentAccount == name"
-          :class="{ clicked: $store.state.currentAccount == name }"
-          @click="$store.state.currentHash = '#BTS'" :key="i">#BTS</a>
+        <div class="container" v-for="(name, i) in merchAccount" v-if="$store.state.currentAccount == name" :key="i">
+          <a v-for="hash in hybe" :key="hash" :class="{ clicked: $store.state.currentHash == hash }" @click="$store.state.currentHash = hash"> {{ hash }}</a>
         </div>
 
         <!-- Project 공계 -->
-        <div class="container" v-if="$store.state.currentAccount === 'bts_love_myself'">
-          <a :class="{ clicked: $store.state.currentAccount == 'bts_love_myself' }" @click="$store.state.currentHash = '#BTS'">#BTS</a>
-        </div>
-        <div class="container" v-if="$store.state.currentAccount === 'Smeraldo_Books'">
-          <a :class="{ clicked: $store.state.currentAccount == 'Smeraldo_Books' }" @click="$store.state.currentHash = '#BTS'">#BTS</a>
-        </div>
-        <div class="container" v-if="$store.state.currentAccount === 'INTHESOOP_TV'">
-          <a v-for="hash in inthesoop_tv" :key="hash" :class="{ clicked: $store.state.currentHash == hash }" @click="$store.state.currentHash = hash"> {{ hash }}</a>
+        <div class="container" v-for="(name, i) in projectAccount" v-if="$store.state.currentAccount == name" :key="i">
+          <a v-for="hash in hybe" :key="hash" :class="{ clicked: $store.state.currentHash == hash }" @click="$store.state.currentHash = hash"> {{ hash }}</a>
         </div>
 
         <!-- Character 공계 -->
@@ -75,7 +66,7 @@
           <a v-for="(name, i) in charAccount"
           v-if="$store.state.currentAccount == name"
           :class="{ clicked: $store.state.currentAccount == name }"
-          @click="$store.state.currentHash = '#BTS'" :key="i">#BTS</a>
+          @click="$store.state.currentHash = 'ALL'" :key="i">ALL</a>
         </div>
 
         <!-- Game 공계 -->
@@ -160,6 +151,10 @@ export default {
             this.tweet = res.data;
           });
       }
+    },
+    current(name) {
+      this.$store.state.currentAccount = name;
+      this.$store.state.currentHash = 'ALL';
     },
     viewID() {
       window.open(`https://twitter.com/${this.$store.state.currentAccount}`);
