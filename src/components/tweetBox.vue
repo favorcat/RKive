@@ -90,24 +90,24 @@
               @{{v.user.screen_name}}
             </div>
           </div>
-          <div class="text-container" @click="viewTweet()">{{v.text}}</div>
+          <div class="text-container" v-html="twt.autoLink(v.text, { usernameIncludeSymbol: true })" />
           <div class="media" @click="downMedia(v.id, v.media[0].id, v.media[0].type)">
               <img v-if="v.media !== undefined" :href="`https://twitter.com/${v.user.screen_name}`" :src="v.media[0].media_url_https" width= "230" >
           </div>
         </div>
       </div>
     </masonry>
-
   </div>
 </div>
 </template>
 
 <script>
+import twitter from 'twitter-text';
+
 export default {
   data() {
     return {
       category: ['BTS', 'HYBE', 'Merch', 'Project', 'Character', 'Game'],
-
       btsAccount: ['BTS_twt', 'bts_bighit', 'BTS_jp_official'],
       hybeAccount: ['BIGHIT_MUSIC', 'weverseofficial', 'HYBEOFFICIALtwt', 'HYBE_LABELS_JP'],
       merchAccount: ['weverseshop', 'HYBE_MERCH', 'BigHitShop'],
@@ -125,6 +125,7 @@ export default {
       rhythmhive_twt: ['ALL', 'BTS', 'EVENT'],
       tweet: [],
       columnCount: 5,
+      twt: twitter,
     };
   },
   created() {
@@ -216,7 +217,6 @@ a {
   flex-wrap: wrap;
   align-items: flex-start;
 }
-
 .tweetBox-wrapper > div {
   width: 100%;
 }
@@ -238,13 +238,23 @@ a {
     padding-left: 10px;
     padding-top: 7px;
 }
-.twtID{
-  color: rgb(34, 148, 255);
-  font-size: small;
+.text-container{
+  text-overflow: hidden;
+  word-wrap: break-word;
 }
 .media{
     width: 200px;
     padding-top: 10px;
+}
+>>> .hashtag{
+  color: skyblue !important;
+  text-decoration-line: none;
+}
+>>> a:link{
+  color: lightblue;
+}
+>>> a:visited{
+  color: lightblue;
 }
 
 .container{
