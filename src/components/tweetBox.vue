@@ -116,7 +116,7 @@ export default {
       gameAccount: ['BTSW_official', 'RhythmHive_twt'],
 
       bts_twt: ['ALL', '#JIN', '#SUGA', '#RM', '#JHope', '#JIMIN', '#V', '#JK', '#김데일리', '#홉필름', '#우리아미상받았네'],
-      bts_bighit: ['ALL', '[공지]', '#오늘의방탄', '#방탄밤'],
+      bts_bighit: ['ALL', '[공지]', '#오늘의방탄', '#방탄밤', '[Episode]'],
       bighitmusic: ['ALL', '#BTS', '[기사]', '[위버스 매거진]'],
       hybe: ['ALL', '#BTS', '#방탄소년단'],
       weverseofficial: ['ALL', '[위버스 매거진]'],
