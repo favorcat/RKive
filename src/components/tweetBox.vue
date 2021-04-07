@@ -90,7 +90,7 @@
               @{{v.user.screen_name}}
             </div>
           </div>
-          <div class="text-container" v-html="twt.autoLink(v.text, { usernameIncludeSymbol: true })" />
+          <div class="text-container" @click="viewTweet(v.id)" v-html="twt.autoLink(v.text, { usernameIncludeSymbol: true })" />
           <div class="media" @click="downMedia(v.id, v.media[0].id, v.media[0].type)">
               <img v-if="v.media !== undefined" :href="`https://twitter.com/${v.user.screen_name}`" :src="v.media[0].media_url_https" width= "230" >
           </div>
@@ -160,8 +160,8 @@ export default {
     viewID() {
       window.open(`https://twitter.com/${this.$store.state.currentAccount}`);
     },
-    viewTweet() {
-      window.open(`https://twitter.com/${this.$store.state.currentAccount}`);
+    viewTweet(id) {
+      window.open(`https://twitter.com/${this.$store.state.currentAccount}/status/${id}`);
     },
     downMedia(id, mediaId, type) {
       if (type === 'photo') {
