@@ -85,15 +85,18 @@ a {
 
 .category-wrapper{
   text-size-adjust: 12px;
-}
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 
+}
 .container{
-    display: flex;
-    flex-direction: row;
     text-align: center;
-    margin: 5px;
+    padding: 10px;
     justify-content: center;
 }
+
 .clicked {
     background: #f9f6f6;
     color:plum;
@@ -108,6 +111,7 @@ a {
     border-color:#ffffff;
     border-radius: 10px;
     padding: 10px;
+    margin: 5px;
     color : black;
     cursor: pointer;
 }

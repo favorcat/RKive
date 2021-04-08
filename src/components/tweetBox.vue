@@ -196,9 +196,17 @@ a {
   }
 .account-wrapper{
     padding-top: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 .hashtag-wrapper{
-    font-size: small;
+  padding: 24px;
+  font-size: small;
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .tweetBox{
   text-align: left;
@@ -222,9 +230,9 @@ a {
 }
 
 .user-container{
-    display: flex;
-    flex-direction: row;
-    padding-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 10px;
 }
 .profileImg{
   border-radius: 70%;
@@ -246,20 +254,18 @@ a {
     width: 200px;
     padding-top: 10px;
 }
->>> .hashtag{
+.text-container >>> .hashtag{
   color: skyblue !important;
   text-decoration-line: none;
 }
->>> a:link{
+.text-container >>> a:link{
   color: lightblue;
 }
->>> a:visited{
+.text-container >>> a:visited{
   color: lightblue;
 }
 
 .container{
-    display: flex;
-    flex-direction: row;
     text-align: center;
     margin: 5px;
     justify-content: center;
@@ -279,6 +285,7 @@ a {
     border-color:#ffffff;
     border-radius: 10px;
     padding: 10px;
+    margin-bottom: 20px !important;
     color : black;
     cursor: pointer;
 }
