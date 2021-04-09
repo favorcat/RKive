@@ -13,7 +13,6 @@ export default {
   data() {
     return {
       category: ['BTS', 'HYBE', 'Merch', 'Project', 'Character', 'Game'],
-      tweet: [],
     };
   },
   methods: {
