@@ -62,11 +62,6 @@
         </div>
 
         <!-- Character 공계 -->
-        <div class="hashtag-wrapper" v-if="$store.state.currentAccount == name">
-          <a v-for="(name, i) in charAccount"
-          :class="{ clicked: $store.state.currentAccount == name }"
-          @click="$store.state.currentHash = 'ALL'" :key="i">ALL</a>
-        </div>
 
         <!-- Game 공계 -->
         <div class="hashtag-wrapper" v-if="$store.state.currentAccount === 'BTSW_official'">
@@ -116,7 +111,7 @@ export default {
 
       bts_twt: ['ALL', '#JIN', '#SUGA', '#RM', '#JHope', '#JIMIN', '#V', '#JK', '#김데일리', '#홉필름', '#우리아미상받았네'],
       bts_bighit: ['ALL', '[공지]', '#오늘의방탄', '#방탄밤', '[Episode]'],
-      bighitmusic: ['ALL', '#BTS', '[기사]', '[위버스 매거진]'],
+      bighitmusic: ['ALL', '#BTS', '[방송]', '[기사]', '[위버스 매거진]'],
       hybe: ['ALL', '#BTS', '#방탄소년단'],
       weverseofficial: ['ALL', '[위버스 매거진]'],
       inthesoop_tv: ['ALL', 'BTS', '방탄소년단'],
@@ -140,6 +135,12 @@ export default {
       this.columnCount = Math.floor(window.innerWidth / 300);
     },
     requestData() {
+      if (this.$store.state.currentAccount === 'ALL') {
+        this.$axios.get('https://api.rkive.cloud/main/0')
+          .then((res) => {
+            this.tweet = res.data;
+          });
+      }
       if (this.$store.state.currentHash === 'ALL') {
         this.$axios.get(`https://api.rkive.cloud/from/id/${this.$store.state.currentAccount}/0`)
           .then((res) => {

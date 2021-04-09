@@ -1,13 +1,9 @@
 <template>
   <div class="App">
     <header class="App-header">
-      <img src="/logo.png" class="App-logo" alt="logo" />
-        <!-- <a
-          class="App-link"
-          href="https://vuejs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >{{ message }}</a> -->
+      <div class="logo" @click="categoryAll()">
+        <img src="/logo.png" class="App-logo" alt="logo">
+      </div>
       <nameBox/>
     </header>
       <tweetBox/>
@@ -23,6 +19,13 @@ export default {
   components: {
     nameBox,
     tweetBox,
+  },
+  methods: {
+    categoryAll() {
+      this.$store.state.currentCategory = 'ALL';
+      this.$store.state.currentAccount = 'ALL';
+      this.$store.state.currentHash = 'ALL';
+    },
   },
 };
 </script>
