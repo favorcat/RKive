@@ -3,9 +3,7 @@
 <div class="nameBox">
   <!-- 카테고리 -->
   <div class="category-wrapper">
-    <div class="container">
       <a v-for="menu in category" :key="menu" :class="{ clicked: $store.state.currentCategory == menu }" @click="current(menu)"> {{ menu }} </a>
-    </div>
   </div>
 </div>
 </template>
@@ -16,34 +14,9 @@ export default {
     return {
       category: ['BTS', 'HYBE', 'Merch', 'Project', 'Character', 'Game'],
       tweet: [],
-      columnCount: 5,
     };
   },
-  created() {
-    window.addEventListener('resize', this.calculateColumn);
-    this.calculateColumn();
-    this.$axios.get(`https://api.rkive.cloud/from/id/${this.$store.state.currentAccount}/0`)
-      .then((res) => {
-        this.tweet = res.data;
-      });
-  },
   methods: {
-    calculateColumn() {
-      this.columnCount = Math.floor(window.innerWidth / 300);
-    },
-    requestData() {
-      if (this.currentHash === 'ALL') {
-        this.$axios.get(`https://api.rkive.cloud/from/id/${this.$store.state.currentAccount}/0`)
-          .then((res) => {
-            this.tweet = res.data;
-          });
-      } else {
-        this.$axios.get(`https://api.rkive.cloud/from/hashtag/${this.$store.state.currentAccount}/0?hashtag=${encodeURIComponent(this.$store.state.currentHash)}`)
-          .then((res) => {
-            this.tweet = res.data;
-          });
-      }
-    },
     current(menu) {
       this.$store.state.currentCategory = menu;
       this.$store.state.currentHash = 'ALL';
@@ -78,34 +51,6 @@ export default {
 a {
     font-family: Malgun Gothic, sans-serif;
     font-size: x-large;
-  }
-.nameBox{
-  width: 900px;
-}
-
-.category-wrapper{
-  text-size-adjust: 12px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-
-}
-.container{
-    text-align: center;
-    padding: 10px;
-    justify-content: center;
-}
-
-.clicked {
-    background: #f9f6f6;
-    color:plum;
-}
-.divider {
-  border-top: 2px solid black;
-  width: 100%;
-}
-a {
     border-style: solid;
     border-width: 1px;
     border-color:#ffffff;
@@ -114,8 +59,22 @@ a {
     margin: 5px;
     color : black;
     cursor: pointer;
+  }
+
+a:hover{
+    background: #f9f6f6 !important;
 }
-.a:hover{
+
+.clicked {
     background: #f9f6f6;
+    color:plum;
+}
+
+.category-wrapper{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 </style>

@@ -25,62 +25,61 @@
   </div>
 
 <!-- 해시태그 -->
-  <div class="hashtag-wrapper">
+  <div class="hashtag-container">
         <!-- BTS 공계-->
-        <div class="container" v-if="$store.state.currentAccount === 'BTS_twt'">
+        <div class="hashtag-wrapper" v-if="$store.state.currentAccount === 'BTS_twt'">
           <a v-for="hash in bts_twt" :key="hash" :class="{ clicked: $store.state.currentHash == hash }" @click="$store.state.currentHash=hash"> {{ hash }}</a>
         </div>
-        <div class="container" v-if="$store.state.currentAccount === 'bts_bighit'">
+        <div class="hashtag-wrapper" v-if="$store.state.currentAccount === 'bts_bighit'">
           <a v-for="hash in bts_bighit" :key="hash" :class="{ clicked: $store.state.currentHash == hash }" @click="$store.state.currentHash = hash"> {{ hash }}</a>
         </div>
-        <div class="container" v-if="$store.state.currentAccount === 'BTS_jp_official'">
+        <div class="hashtag-wrapper" v-if="$store.state.currentAccount === 'BTS_jp_official'">
           <a :class="{ clicked: $store.state.currentAccount == 'BTS_jp_official' }" @click="$store.state.currentHash = 'ALL'">ALL</a>
         </div>
 
         <!-- HYBE 공계 -->
-        <div class="container" v-if="currentAccount === 'BIGHIT_MUSIC'">
+        <div class="hashtag-wrapper" v-if="currentAccount === 'BIGHIT_MUSIC'">
           <a v-for="hash in bighitmusic" :key="hash" :class="{ clicked: $store.state.currentHash == hash }" @click="$store.state.currentHash = hash"> {{ hash }}</a>
         </div>
-        <div class="container" v-if="currentAccount === 'weverseofficial'">
+        <div class="hashtag-wrapper" v-if="currentAccount === 'weverseofficial'">
           <a v-for="hash in weverseofficial" :key="hash" :class="{ clicked: $store.state.currentHash == hash }" @click="$store.state.currentHash = hash"> {{ hash }}</a>
         </div>
-        <div class="container" v-if="currentAccount === 'HYBEOFFICIALtwt'">
+        <div class="hashtag-wrapper" v-if="currentAccount === 'HYBEOFFICIALtwt'">
           <a v-for="hash in hybe" :key="hash" :class="{ clicked: $store.state.currentHash == hash }" @click="$store.state.currentHash = hash"> {{ hash }}</a>
         </div>
-        <div class="container" v-if="currentAccount === 'HYBE_LABELS_JP'">
+        <div class="hashtag-wrapper" v-if="currentAccount === 'HYBE_LABELS_JP'">
           <a v-for="hash in hybe" :key="hash" :class="{ clicked: $store.state.currentHash == hash }" @click="$store.state.currentHash = hash"> {{ hash }}</a>
         </div>
 
         <!-- Merch 공계 -->
-        <div class="container" v-for="(name, i) in merchAccount" v-if="$store.state.currentAccount == name" :key="i">
+        <div class="hashtag-wrapper" v-for="(name, i) in merchAccount" v-if="$store.state.currentAccount == name" :key="i">
           <a v-for="hash in hybe" :key="hash" :class="{ clicked: $store.state.currentHash == hash }" @click="$store.state.currentHash = hash"> {{ hash }}</a>
         </div>
 
         <!-- Project 공계 -->
-        <div class="container" v-for="(name, i) in projectAccount" v-if="$store.state.currentAccount == name" :key="i">
+        <div class="hashtag-wrapper" v-for="(name, i) in projectAccount" v-if="$store.state.currentAccount == name" :key="i">
           <a v-for="hash in hybe" :key="hash" :class="{ clicked: $store.state.currentHash == hash }" @click="$store.state.currentHash = hash"> {{ hash }}</a>
         </div>
 
         <!-- Character 공계 -->
-        <div class="container">
+        <div class="hashtag-wrapper" v-if="$store.state.currentAccount == name">
           <a v-for="(name, i) in charAccount"
-          v-if="$store.state.currentAccount == name"
           :class="{ clicked: $store.state.currentAccount == name }"
           @click="$store.state.currentHash = 'ALL'" :key="i">ALL</a>
         </div>
 
         <!-- Game 공계 -->
-        <div class="container" v-if="$store.state.currentAccount === 'BTSW_official'">
+        <div class="hashtag-wrapper" v-if="$store.state.currentAccount === 'BTSW_official'">
           <a v-for="hash in btsw_official" :key="hash" :class="{ clicked: $store.state.currentHash == hash }" @click="$store.state.currentHash = hash"> {{ hash }}</a>
         </div>
-        <div class="container" v-if="$store.state.currentAccount === 'RhythmHive_twt'">
+        <div class="hashtag-wrapper" v-if="$store.state.currentAccount === 'RhythmHive_twt'">
           <a v-for="hash in rhythmhive_twt" :key="hash" :class="{ clicked: $store.state.currentHash == hash }" @click="$store.state.currentHash = hash"> {{ hash }}</a>
         </div>
   </div>
 
   <!-- 트윗 카드 -->
   <div class="tweetBox-wrapper" :style="`column-count: ${columnCount}`">
-    <masonry :cols="columnCount" :gutter="30">
+    <masonry :cols="columnCount">
       <div class="tweetBox" v-for="(v, i) in tweet" :key="i">
         <div class="content">
           <div class="user-container" @click="viewID()">
@@ -191,42 +190,91 @@ export default {
 </script>
 
 <style scoped>
+@media (max-width: 400px) {
+  .tweetBox {
+    margin: auto !important;
+  }
+}
+
 a {
     font-family: Malgun Gothic, sans-serif;
-  }
+    border-style: solid;
+    border-width: 1px;
+    border-color:#ffffff;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 8px !important;
+    color : black;
+    cursor: pointer;
+}
+
+a:hover{
+    background: #f9f6f6 !important;
+}
+
+.clicked {
+    background: #f9f6f6;
+    color:plum;
+}
+
+.container{
+    margin: 5px;
+    justify-content: center;
+}
+
 .account-wrapper{
     padding-top: 10px;
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: center;
 }
+
+.account-wrapper > .container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.account-wrapper > .container > a.clicked {
+  color: plum;
+}
+
+.hashtag-container{
+  text-align: center;
+}
+
 .hashtag-wrapper{
-  padding: 24px;
   font-size: small;
   display: inline-flex;
   flex-wrap: wrap;
   justify-content: center;
 }
-.tweetBox{
-  text-align: left;
-  width: 230px;
-  height: auto;
-  border-style: solid;
-  border-width: 1px;
-  border-color:#c9c9c9;
-  border-radius: 10px;
-  padding: 10px;
-  margin-bottom: 30px;
+
+.hashtag-wrapper > a.clicked {
+  color: skyblue;
 }
+
 .tweetBox-wrapper {
   padding: 24px;
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
 }
+
 .tweetBox-wrapper > div {
-  width: 100%;
+  margin: auto !important;
+  width: 100% !important;
+  align-content: center;
+  justify-content: center;
+}
+
+.tweetBox{
+  width: 230px;
+  border-style: solid;
+  border-width: 1px;
+  border-color:#c9c9c9;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 30px;
 }
 
 .user-container{
@@ -234,62 +282,45 @@ a {
   flex-direction: row;
   padding-bottom: 10px;
 }
+
 .profileImg{
   border-radius: 70%;
   overflow: hidden;
   object-fit: cover;
-
 }
+
 .user{
     display: flex;
     flex-direction: column;
     padding-left: 10px;
     padding-top: 7px;
 }
+
 .text-container{
   text-overflow: hidden;
   word-wrap: break-word;
 }
-.media{
-    width: 200px;
-    padding-top: 10px;
-}
+
 .text-container >>> .hashtag{
   color: skyblue !important;
   text-decoration-line: none;
 }
+
 .text-container >>> a:link{
   color: lightblue;
 }
+
 .text-container >>> a:visited{
   color: lightblue;
 }
 
-.container{
-    text-align: center;
-    margin: 5px;
-    justify-content: center;
+.media{
+    width: 200px;
+    padding-top: 10px;
 }
-.clicked {
-    background: #f9f6f6;
-    color:plum;
-}
+
 .divider {
   border-top: 2px solid rgb(243, 201, 243);
   width: 100%;
-}
-
-a {
-    border-style: solid;
-    border-width: 1px;
-    border-color:#ffffff;
-    border-radius: 10px;
-    padding: 10px;
-    margin-bottom: 20px !important;
-    color : black;
-    cursor: pointer;
-}
-.a:hover{
-    background: #f9f6f6;
 }
 </style>

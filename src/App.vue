@@ -10,9 +10,7 @@
         >{{ message }}</a> -->
       <nameBox/>
     </header>
-    <div class="tweet">
       <tweetBox/>
-    </div>
   </div>
 
 </template>
@@ -30,11 +28,20 @@ export default {
 </script>
 
 <style>
+@media (max-width: 400px) {
+  .App-header {
+    flex-direction: column !important;
+  }
+
+  .App-logo {
+    height: 125px !important;
+  }
+}
+
 .App {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Malgun Gothic', 'Open Sans', 'Helvetica Neue', sans-serif;
-  display: flex;
-  flex-direction:column;
 }
+
 .App-header {
   min-height: 200px;
   display: flex;
@@ -46,15 +53,7 @@ export default {
 
 .App-logo {
   height: 100px;
-  display: flex;
-  flex-direction: row;
   pointer-events: none;
   margin: 30px;
 }
-
-.tweet {
-  display: flex;
-  flex-direction: row;
-}
-
 </style>
