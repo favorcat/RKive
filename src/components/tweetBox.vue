@@ -48,18 +48,14 @@
           <a v-for="hash in hybe" :key="hash" :class="{ clicked: $store.state.currentHash == hash }" @click="$store.state.currentHash = hash"> {{ hash }}</a>
         </div>
         <div class="hashtag-wrapper" v-if="currentAccount === 'HYBE_LABELS_JP'">
-          <a v-for="hash in hybe" :key="hash" :class="{ clicked: $store.state.currentHash == hash }" @click="$store.state.currentHash = hash"> {{ hash }}</a>
         </div>
 
         <!-- Merch 공계 -->
         <div class="hashtag-wrapper" v-for="(name, i) in merchAccount" v-if="$store.state.currentAccount == name" :key="i">
-          <a v-for="hash in hybe" :key="hash" :class="{ clicked: $store.state.currentHash == hash }" @click="$store.state.currentHash = hash"> {{ hash }}</a>
+          <a v-for="hash in weverseshop" :key="hash" :class="{ clicked: $store.state.currentHash == hash }" @click="$store.state.currentHash = hash"> {{ hash }}</a>
         </div>
 
         <!-- Project 공계 -->
-        <div class="hashtag-wrapper" v-for="(name, i) in projectAccount" v-if="$store.state.currentAccount == name" :key="i">
-          <a v-for="hash in hybe" :key="hash" :class="{ clicked: $store.state.currentHash == hash }" @click="$store.state.currentHash = hash"> {{ hash }}</a>
-        </div>
 
         <!-- Character 공계 -->
 
@@ -110,12 +106,13 @@ export default {
       gameAccount: ['BTSW_official', 'RhythmHive_twt'],
 
       bts_twt: ['ALL', '#JIN', '#SUGA', '#RM', '#JHope', '#JIMIN', '#V', '#JK', '#김데일리', '#홉필름', '#우리아미상받았네'],
-      bts_bighit: ['ALL', '[공지]', '#오늘의방탄', '#방탄밤', '[Episode]'],
-      bighitmusic: ['ALL', '#BTS', '[방송]', '[기사]', '[위버스 매거진]'],
-      hybe: ['ALL', '#BTS', '#방탄소년단'],
-      weverseofficial: ['ALL', '[위버스 매거진]'],
+      bts_bighit: ['ALL', '공지', '#오늘의방탄', '#방탄밤', 'Episode'],
+      bighitmusic: ['ALL', '#BTS', '방송', '기사', '위버스 매거진'],
+      hybe: ['ALL', 'BTS', 'HYBE INSIGHT', '기사', '위버스 매거진'],
+      weverseshop: ['ALL', '예약 판매'],
+      weverseofficial: ['ALL', '위버스 매거진'],
       inthesoop_tv: ['ALL', 'BTS', '방탄소년단'],
-      btsw_official: ['ALL', '업데이트', '점검'],
+      btsw_official: ['ALL', '공지', '업데이트', '점검'],
       rhythmhive_twt: ['ALL', 'BTS', 'EVENT'],
       tweet: [],
       columnCount: 5,
