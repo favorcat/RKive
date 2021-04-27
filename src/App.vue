@@ -7,18 +7,20 @@
       <nameBox/>
     </header>
       <tweetBox/>
+      <contact/>
   </div>
-
 </template>
 
 <script>
 import nameBox from './components/nameBox.vue';
 import tweetBox from './components/tweetBox.vue';
+import contact from './components/contact.vue';
 
 export default {
   components: {
     nameBox,
     tweetBox,
+    contact,
   },
   methods: {
     categoryAll() {
