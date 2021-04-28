@@ -4,7 +4,7 @@
   <!-- 연락처 -->
     <a class="title">CONTACT</a>
     <a href="mailto:rkive.cloud@gmail.com">Email</a>
-    <a href="https://twitter.com/RkiveCloud">Twitter</a>
+    <a href="https://twitter.com/RkiveCloud">Twitter (@RkiveCloud)</a>
 </div>
 </template>
 
@@ -26,10 +26,12 @@ a {
     padding-top: 20px;
     padding-bottom: 20px;
     padding-right: 10px;
+    cursor: pointer;
 }
 .title{
     font-size: large;
     padding-right: 20px;
+    cursor: default;
 }
 .contact-box{
     display: flex;
