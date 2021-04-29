@@ -1,79 +1,12 @@
 <template>
 <!-- eslint-disable vue/no-use-v-if-with-v-for,vue/no-confusing-v-for-v-if -->
 <div style="width: 100%">
-    <div class="divider"/>
-    <!-- 계정 메뉴 -->
-  <div class="account-wrapper">
-      <div class="container" v-if="$store.state.currentCategory === 'BTS'">
-        <a v-for="name in btsAccount" :key="name" :class="{ clicked: $store.state.currentAccount == name }" @click="current(name)"> {{ name }} </a>
-      </div>
-      <div class="container" v-if="$store.state.currentCategory === 'HYBE'">
-        <a v-for="name in hybeAccount" :key="name" :class="{ clicked: $store.state.currentAccount == name }" @click="current(name)"> {{ name }} </a>
-      </div>
-      <div class="container" v-if="$store.state.currentCategory === 'Merch'">
-        <a v-for="name in merchAccount" :key="name" :class="{ clicked: $store.state.currentAccount == name }" @click="current(name)"> {{ name }} </a>
-      </div>
-      <div class="container" v-if="$store.state.currentCategory === 'Project'">
-        <a v-for="name in projectAccount" :key="name" :class="{ clicked: $store.state.currentAccount == name }" @click="current(name)"> {{ name }} </a>
-      </div>
-      <div class="container" v-if="$store.state.currentCategory === 'Character'">
-        <a v-for="name in charAccount" :key="name" :class="{ clicked: $store.state.currentAccount == name }" @click="current(name)"> {{ name }} </a>
-      </div>
-      <div class="container" v-if="$store.state.currentCategory === 'Game'">
-        <a v-for="name in gameAccount" :key="name" :class="{ clicked: $store.state.currentAccount == name }" @click="current(name)"> {{ name }} </a>
-      </div>
-  </div>
-
-<!-- 해시태그 -->
-  <div class="hashtag-container">
-        <!-- BTS 공계-->
-        <div class="hashtag-wrapper" v-if="$store.state.currentAccount === 'BTS_twt'">
-          <a v-for="hash in bts_twt" :key="hash" :class="{ clicked: $store.state.currentHash == hash }" @click="$store.state.currentHash=hash"> {{ hash }}</a>
-        </div>
-        <div class="hashtag-wrapper" v-if="$store.state.currentAccount === 'bts_bighit'">
-          <a v-for="hash in bts_bighit" :key="hash" :class="{ clicked: $store.state.currentHash == hash }" @click="$store.state.currentHash = hash"> {{ hash }}</a>
-        </div>
-        <div class="hashtag-wrapper" v-if="$store.state.currentAccount === 'BTS_jp_official'">
-          <a :class="{ clicked: $store.state.currentAccount == 'BTS_jp_official' }" @click="$store.state.currentHash = 'ALL'">ALL</a>
-        </div>
-
-        <!-- HYBE 공계 -->
-        <div class="hashtag-wrapper" v-if="currentAccount === 'BIGHIT_MUSIC'">
-          <a v-for="hash in bighitmusic" :key="hash" :class="{ clicked: $store.state.currentHash == hash }" @click="$store.state.currentHash = hash"> {{ hash }}</a>
-        </div>
-        <div class="hashtag-wrapper" v-if="currentAccount === 'weverseofficial'">
-          <a v-for="hash in weverseofficial" :key="hash" :class="{ clicked: $store.state.currentHash == hash }" @click="$store.state.currentHash = hash"> {{ hash }}</a>
-        </div>
-        <div class="hashtag-wrapper" v-if="currentAccount === 'HYBEOFFICIALtwt'">
-          <a v-for="hash in hybe" :key="hash" :class="{ clicked: $store.state.currentHash == hash }" @click="$store.state.currentHash = hash"> {{ hash }}</a>
-        </div>
-        <div class="hashtag-wrapper" v-if="currentAccount === 'HYBE_LABELS_JP'">
-        </div>
-
-        <!-- Merch 공계 -->
-        <div class="hashtag-wrapper" v-for="(name, i) in merchAccount" v-if="$store.state.currentAccount == name" :key="i">
-          <a v-for="hash in weverseshop" :key="hash" :class="{ clicked: $store.state.currentHash == hash }" @click="$store.state.currentHash = hash"> {{ hash }}</a>
-        </div>
-
-        <!-- Project 공계 -->
-
-        <!-- Character 공계 -->
-
-        <!-- Game 공계 -->
-        <div class="hashtag-wrapper" v-if="$store.state.currentAccount === 'BTSW_official'">
-          <a v-for="hash in btsw_official" :key="hash" :class="{ clicked: $store.state.currentHash == hash }" @click="$store.state.currentHash = hash"> {{ hash }}</a>
-        </div>
-        <div class="hashtag-wrapper" v-if="$store.state.currentAccount === 'RhythmHive_twt'">
-          <a v-for="hash in rhythmhive_twt" :key="hash" :class="{ clicked: $store.state.currentHash == hash }" @click="$store.state.currentHash = hash"> {{ hash }}</a>
-        </div>
-  </div>
-
-  <!-- 트윗 카드 -->
+  <!-- Tweet card -->
   <div class="tweetBox-wrapper" :style="`column-count: ${columnCount}`">
     <masonry :cols="columnCount">
       <div class="tweetBox" v-for="(v, i) in tweet" :key="i">
         <div class="content">
-          <div class="user-container" @click="viewID()">
+          <div class="user-container" @click="viewID(v.user.screen_name)">
             <img class="profileImg" :src="v.user.profile_image_url_https">
             <div class="user">
               {{v.user.name}}<br>
@@ -97,23 +30,6 @@ import twitter from 'twitter-text';
 export default {
   data() {
     return {
-      category: ['BTS', 'HYBE', 'Merch', 'Project', 'Character', 'Game'],
-      btsAccount: ['BTS_twt', 'bts_bighit', 'BTS_jp_official'],
-      hybeAccount: ['BIGHIT_MUSIC', 'weverseofficial', 'HYBEOFFICIALtwt', 'HYBE_LABELS_JP'],
-      merchAccount: ['weverseshop', 'HYBE_MERCH', 'BigHitShop'],
-      projectAccount: ['bts_love_myself', 'Smeraldo_Books', 'INTHESOOP_TV'],
-      charAccount: ['BT21_', 'BT21_Japan', 'TinyTANofficial'],
-      gameAccount: ['BTSW_official', 'RhythmHive_twt'],
-
-      bts_twt: ['ALL', '#JIN', '#SUGA', '#RM', '#JHope', '#JIMIN', '#V', '#JK', '#김데일리', '#홉필름', '#우리아미상받았네'],
-      bts_bighit: ['ALL', '공지', '#오늘의방탄', '#방탄밤', 'Episode'],
-      bighitmusic: ['ALL', '#BTS', '방송', '기사', '위버스 매거진'],
-      hybe: ['ALL', 'BTS', 'HYBE INSIGHT', '기사', '위버스 매거진'],
-      weverseshop: ['ALL', '예약 판매'],
-      weverseofficial: ['ALL', '위버스 매거진'],
-      inthesoop_tv: ['ALL', 'BTS', '방탄소년단'],
-      btsw_official: ['ALL', '공지', '업데이트', '점검'],
-      rhythmhive_twt: ['ALL', 'BTS', 'EVENT'],
       tweet: [],
       columnCount: 5,
       twt: twitter,
@@ -122,7 +38,7 @@ export default {
   created() {
     window.addEventListener('resize', this.calculateColumn);
     this.calculateColumn();
-    this.$axios.get(`https://api.rkive.cloud/from/id/${this.$store.state.currentAccount}/0`)
+    this.$axios.get('https://api.rkive.cloud/main/0')
       .then((res) => {
         this.tweet = res.data;
       });
@@ -154,8 +70,8 @@ export default {
       this.$store.state.currentAccount = name;
       this.$store.state.currentHash = 'ALL';
     },
-    viewID() {
-      window.open(`https://twitter.com/${this.$store.state.currentAccount}`);
+    viewID(screenName) {
+      window.open(`https://twitter.com/${screenName}`);
     },
     viewTweet(id) {
       window.open(`https://twitter.com/${this.$store.state.currentAccount}/status/${id}`);
@@ -188,67 +104,23 @@ export default {
 </script>
 
 <style scoped>
-@media (max-width: 400px) {
+@media (max-width: 640px) {
+  .tweetBox-wrapper {
+    font-size: smaller;
+  }
+}
+
+@media (max-width: 900px) {
   .tweetBox {
     margin: auto !important;
+    margin-bottom: 20px !important;
   }
 }
 
 a {
-    font-family: Malgun Gothic, sans-serif;
-    border-style: solid;
-    border-width: 1px;
-    border-color:#ffffff;
-    border-radius: 10px;
-    padding: 10px;
-    margin-bottom: 8px !important;
-    color : black;
-    cursor: pointer;
-}
-
-a:hover{
-    background: #f9f6f6 !important;
-}
-
-.clicked {
-    background: #f9f6f6;
-    color:plum;
-}
-
-.container{
-    margin: 5px;
-    justify-content: center;
-}
-
-.account-wrapper{
-    padding-top: 10px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
-.account-wrapper > .container {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.account-wrapper > .container > a.clicked {
-  color: plum;
-}
-
-.hashtag-container{
-  text-align: center;
-}
-
-.hashtag-wrapper{
-  font-size: small;
-  display: inline-flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.hashtag-wrapper > a.clicked {
-  color: skyblue;
+  font-family: Malgun Gothic, sans-serif;
+  color : black;
+  cursor: default;
 }
 
 .tweetBox-wrapper {
@@ -273,8 +145,10 @@ a:hover{
   border-radius: 10px;
   padding: 10px;
   margin: 30px;
+  cursor: pointer;
 }
 
+/* user */
 .user-container{
   display: flex;
   flex-direction: row;
@@ -288,12 +162,13 @@ a:hover{
 }
 
 .user{
-    display: flex;
-    flex-direction: column;
-    padding-left: 10px;
-    padding-top: 7px;
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+  padding-top: 7px;
 }
 
+/* tweet content */
 .text-container{
   text-overflow: hidden;
   word-wrap: break-word;
@@ -313,12 +188,7 @@ a:hover{
 }
 
 .media{
-    width: 200px;
-    padding-top: 10px;
-}
-
-.divider {
-  border-top: 2px solid rgb(243, 201, 243);
-  width: 100%;
+  width: 200px;
+  padding-top: 10px;
 }
 </style>

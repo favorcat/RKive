@@ -5,8 +5,9 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    currentCategory: 'BTS',
-    currentAccount: 'BTS_twt',
+    currentCategory: 'ALL',
+    currentAccount: 'ALL',
+    currentScreenname: 'ALL',
     currentHash: 'ALL',
   },
   mutations: {
