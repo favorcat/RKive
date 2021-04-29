@@ -1,7 +1,7 @@
 <template>
 <!-- eslint-disable vue/no-use-v-if-with-v-for,vue/no-confusing-v-for-v-if -->
 <div class="contact-box">
-  <!-- 연락처 -->
+  <!-- Contact -->
     <a class="title">CONTACT</a>
     <a href="mailto:rkive.cloud@gmail.com">Email</a>
     <a href="https://twitter.com/RkiveCloud">Twitter (@RkiveCloud)</a>
@@ -18,6 +18,11 @@ export default {
 </script>
 
 <style scoped>
+@media (max-width: 640px) {
+  .title {
+    font-size: medium !important;
+  }
+}
 a {
     font-family: Malgun Gothic, sans-serif;
     font-size: small;
@@ -30,6 +35,7 @@ a {
 }
 .title{
     font-size: large;
+    padding-left: 20px;
     padding-right: 20px;
     cursor: default;
 }

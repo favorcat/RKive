@@ -50,7 +50,7 @@ export default {
 </script>
 
 <style>
-@media (max-width: 620px) {
+@media (max-width: 640px) {
   .App-logo {
     height: 50px !important;
     margin: 0 !important;
