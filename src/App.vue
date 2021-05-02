@@ -35,6 +35,9 @@ export default {
     tweetBox,
     contact,
   },
+  created() {
+    document.title = 'Rkive';
+  },
   methods: {
     categoryAll() {
       this.$store.state.currentCategory = 'ALL';
