@@ -244,6 +244,13 @@ a {
 }
 
 .paging{
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background: white;
+  padding-left: 50%;
+  padding-right: 50%;
   display: flex;
   flex-direction: row;
   align-items: center;
