@@ -161,10 +161,12 @@ export default {
       this.$store.state.currentAccount = account;
       this.$store.state.currentScreenname = screen;
       this.$store.state.currentHash = hash;
+      this.$store.state.currentPage = 0;
     },
     currentmenu(category) {
       this.$store.state.currentCategory = category;
       this.$store.state.currentHash = 'ALL';
+      this.$store.state.currentPage = 0;
       switch (this.$store.state.currentCategory) {
         case 'BTS':
           this.$store.state.currentAccount = 'BTS_twt';
@@ -197,6 +199,7 @@ export default {
     currentacc(account) {
       this.$store.state.currentAccount = account;
       this.$store.state.currentHash = 'ALL';
+      this.$store.state.currentPage = 0;
     },
     vailable(x) {
       if (document.getElementById(x).style.display === 'block') {

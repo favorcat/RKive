@@ -140,6 +140,7 @@ export default {
       this.$store.state.currentAccount = account;
       this.$store.state.currentScreenname = screen;
       this.$store.state.currentHash = hash;
+      this.$store.state.currentPage = 0;
     },
     vailable(x) {
       if (document.getElementById(x).style.display === 'block') {

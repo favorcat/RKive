@@ -21,6 +21,11 @@
       </div>
     </masonry>
   </div>
+  <div class="paging">
+    <i class="fa fa-chevron-left" @click="beforepage()"></i>
+    <a> {{ $store.state.currentPage/20+1 }} </a>
+    <i class="fa fa-chevron-right" @click="afterpage()"></i>
+  </div>
 </div>
 </template>
 
@@ -38,7 +43,7 @@ export default {
   created() {
     window.addEventListener('resize', this.calculateColumn);
     this.calculateColumn();
-    this.$axios.get('https://api.rkive.cloud/main/0')
+    this.$axios.get(`https://api.rkive.cloud/main/${this.$store.state.currentPage}`)
       .then((res) => {
         this.tweet = res.data;
       });
@@ -49,20 +54,25 @@ export default {
     },
     requestData() {
       if (this.$store.state.currentAccount === 'ALL') {
-        this.$axios.get('https://api.rkive.cloud/main/0')
+        this.$axios.get(`https://api.rkive.cloud/main/${this.$store.state.currentPage}`)
           .then((res) => {
             this.tweet = res.data;
           });
-      }
-      if (this.$store.state.currentHash === 'ALL') {
-        this.$axios.get(`https://api.rkive.cloud/from/id/${this.$store.state.currentAccount}/0`)
+      } else if (this.$store.state.currentHash === 'ALL') {
+        this.$axios.get(`https://api.rkive.cloud/from/id/${this.$store.state.currentAccount}/${this.$store.state.currentPage}`)
           .then((res) => {
             this.tweet = res.data;
+            if (res.data.length === 0) {
+              alert('아직 저장된 트윗이 없습니다.');
+            }
           });
       } else {
-        this.$axios.get(`https://api.rkive.cloud/from/hashtag/${this.$store.state.currentAccount}/0?hashtag=${encodeURIComponent(this.$store.state.currentHash)}`)
+        this.$axios.get(`https://api.rkive.cloud/from/hashtag/${this.$store.state.currentAccount}/${this.$store.state.currentPage}?hashtag=${encodeURIComponent(this.$store.state.currentHash)}`)
           .then((res) => {
             this.tweet = res.data;
+            if (res.data.length === 0) {
+              alert('아직 저장된 트윗이 없습니다.');
+            }
           });
       }
     },
@@ -83,6 +93,41 @@ export default {
         window.open(`https://btstweetmedia.blob.core.windows.net/media/${id}/${mediaId}.mp4`);
       }
     },
+    beforepage() {
+      if (this.$store.state.currentPage !== 0) {
+        this.$store.state.currentPage -= 20;
+      } else {
+        alert('첫 페이지입니다.');
+      }
+    },
+    afterpage() {
+      this.$store.state.currentPage += 20;
+      if (this.$store.state.currentAccount === 'ALL') {
+        this.$axios.get(`https://api.rkive.cloud/main/${this.$store.state.currentPage}`)
+          .then((res) => {
+            if (res.data.length === 0) {
+              this.$store.state.currentPage -= 20;
+              alert('마지막 페이지입니다.');
+            }
+          });
+      } else if (this.$store.state.currentHash === 'ALL') {
+        this.$axios.get(`https://api.rkive.cloud/from/id/${this.$store.state.currentAccount}/${this.$store.state.currentPage}`)
+          .then((res) => {
+            if (res.data.length === 0) {
+              this.$store.state.currentPage -= 20;
+              alert('마지막 페이지입니다.');
+            }
+          });
+      } else {
+        this.$axios.get(`https://api.rkive.cloud/from/hashtag/${this.$store.state.currentAccount}/${this.$store.state.currentPage}?hashtag=${encodeURIComponent(this.$store.state.currentHash)}`)
+          .then((res) => {
+            if (res.data.length === 0) {
+              this.$store.state.currentPage -= 20;
+              alert('마지막 페이지입니다.');
+            }
+          });
+      }
+    },
   },
   computed: {
     currentAccount() {
@@ -91,12 +136,18 @@ export default {
     currentHash() {
       return this.$store.state.currentHash;
     },
+    currentPage() {
+      return this.$store.state.currentPage;
+    },
   },
   watch: {
     currentAccount() {
       this.requestData();
     },
     currentHash() {
+      this.requestData();
+    },
+    currentPage() {
       this.requestData();
     },
   },
@@ -190,5 +241,18 @@ a {
 .media{
   width: 200px;
   padding-top: 10px;
+}
+
+.paging{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.fa{
+  padding: 15px;
+  color: rgb(0, 153, 235);
+  transform: none;
 }
 </style>

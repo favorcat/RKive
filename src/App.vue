@@ -11,7 +11,7 @@
       <div class="current">
         <div class="divider"/>
         <!-- current category -->
-        <a class="current-state"> {{$store.state.currentCategory}} > {{$store.state.currentAccount}} > {{$store.state.currentHash}} </a>
+        <a class="current-state"> {{$store.state.currentCategory}} > {{$store.state.currentScreenname}} > {{$store.state.currentHash}} </a>
       </div>
     </header>
       <tweetBox/>
@@ -44,6 +44,7 @@ export default {
       this.$store.state.currentAccount = 'ALL';
       this.$store.state.currentScreenname = 'ALL';
       this.$store.state.currentHash = 'ALL';
+      this.$store.state.currentPage = 0;
     },
     scrollToTop() {
       window.scrollTo(0, 0);

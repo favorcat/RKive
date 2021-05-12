@@ -9,6 +9,7 @@ export default new Vuex.Store({
     currentAccount: 'ALL',
     currentScreenname: 'ALL',
     currentHash: 'ALL',
+    currentPage: 0,
   },
   mutations: {
   },
