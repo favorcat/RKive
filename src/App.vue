@@ -1,6 +1,6 @@
 <template>
   <div class="App">
-    <header class="App-header">
+    <header class="App-header" :class="{ 'header--hidden': !showHeader }">
       <div class="header">
         <div class="logo" @click="categoryAll()">
           <img src="/logo.png" class="App-logo" alt="logo">
@@ -36,6 +36,12 @@ import tweetBox from './components/tweetBox.vue';
 import contact from './components/contact.vue';
 
 export default {
+  data() {
+    return {
+      showHeader: true,
+      lastScrollPosition: 0,
+    };
+  },
   components: {
     nameBox,
     nameBoxMobile,
@@ -65,6 +71,25 @@ export default {
     telegram() {
       window.open('http://t.me/RkiveCloud');
     },
+    onScroll() {
+      const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+      if (currentScrollPosition < 0) {
+        return;
+      }
+      // Stop executing this function if the difference between
+      // current scroll position and last scroll position is less than some offset
+      if (Math.abs(currentScrollPosition - this.lastScrollPosition) < 60) {
+        return;
+      }
+      this.showHeader = currentScrollPosition < this.lastScrollPosition;
+      this.lastScrollPosition = currentScrollPosition;
+    },
+  },
+  mounted() {
+    window.addEventListener('scroll', this.onScroll);
+  },
+  beforeDestroy() {
+    window.removeEventListener('scroll', this.onScroll);
   },
 };
 </script>
@@ -109,8 +134,14 @@ export default {
   position: sticky;
   top: 0;
   background: white;
+  transform: translate3d(0, 0, 0);
+  transition: 0.1s all ease-out;
 }
 
+.App-header.header--hidden {
+  box-shadow: none;
+  transform: translate3d(0, -100%, 0);
+}
 .App-logo {
   height: 75px;
   pointer-events: none;
