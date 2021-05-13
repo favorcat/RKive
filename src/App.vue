@@ -16,9 +16,8 @@
     </header>
       <tweetBox/>
       <contact/>
-      <div class="subscribe">
-        <img class="twitter" src='./assets/twitter-brands.svg' @click="twitter()" width= "55">
-        <img class="telegram" src='./assets/telegram-plane-brands.svg' @click="telegram()" width= "55.5">
+      <div class="question-button" @click="question()">
+        <img class="question" src='./assets/question-solid.svg'>
       </div>
       <div class="top-button" @click="scrollToTop()">
         <i class="fa fa-chevron-up"></i>
@@ -65,12 +64,6 @@ export default {
     scrollToBottom() {
       window.scrollTo(0, document.body.scrollHeight);
     },
-    twitter() {
-      window.open('https://twitter.com/RkiveCloud');
-    },
-    telegram() {
-      window.open('http://t.me/RkiveCloud');
-    },
     onScroll() {
       const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
       if (currentScrollPosition < 0) {
@@ -83,6 +76,9 @@ export default {
       }
       this.showHeader = currentScrollPosition < this.lastScrollPosition;
       this.lastScrollPosition = currentScrollPosition;
+    },
+    question() {
+      window.open('https://www.notion.so/favorcat/How-to-use-Rkive-56b59f32b32e4b31a0d1f61a98d70674');
     },
   },
   mounted() {
@@ -179,14 +175,14 @@ export default {
   margin-bottom: 15px;
 }
 
-.twitter:hover, .telegram:hover, .top-button:hover, .bottom-button:hover {
+.top-button:hover, .bottom-button:hover, .question-button:hover {
   background: #42A5F5;
 }
 
-.twitter, .telegram, .top-button, .bottom-button {
+.top-button, .bottom-button, .question-button {
   color: #fff;
-  width: 55.5px;
-  height: 55.5px;
+  width: 44px;
+  height: 44px;
   position: fixed;
   margin-bottom: 10px;
   background: rgb(0, 153, 235);
@@ -195,16 +191,12 @@ export default {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
 
-.telegram {
-  bottom: 210px;
-  right: 15px;
-}
-.twitter {
-  bottom: 145px;
+.question-button {
+  bottom: 115px;
   right: 15px;
 }
 .top-button {
-  bottom: 80px;
+  bottom: 65px;
   right: 15px;
 }
 .bottom-button {
@@ -213,6 +205,6 @@ export default {
 }
 
 i {
-  padding-top: 17px;
+  padding-top: 12px;
 }
 </style>

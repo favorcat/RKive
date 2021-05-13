@@ -1,10 +1,9 @@
 <template>
 <!-- eslint-disable vue/no-use-v-if-with-v-for,vue/no-confusing-v-for-v-if -->
-<div class="contact-box">
-  <!-- Contact -->
-    <a class="title">CONTACT</a>
-    <a href="mailto:rkive.cloud@gmail.com">Email</a>
-    <a href="https://twitter.com/RkiveCloud">Twitter (@RkiveCloud)</a>
+<div class="subscribe-box">
+  <img class="twitter" src='../assets/twitter-brands.svg' @click="twitter()">
+  <img class="telegram" src='../assets/telegram-plane-brands.svg' @click="telegram()">
+  <img class="email" src='../assets/envelope-solid.svg' @click="email()">
 </div>
 </template>
 
@@ -14,36 +13,36 @@ export default {
     return {
     };
   },
+  methods: {
+    twitter() {
+      window.open('https://twitter.com/RkiveCloud');
+    },
+    telegram() {
+      window.open('http://t.me/RkiveCloud');
+    },
+    email() {
+      window.open('mailto:rkive.cloud@gmail.com');
+    },
+  },
 };
 </script>
 
 <style scoped>
-@media (max-width: 640px) {
-  .title {
-    font-size: medium !important;
-  }
+.subscribe-box{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 50px;
 }
-a {
-    font-family: Malgun Gothic, sans-serif;
-    font-size: small;
-    color : black;
-    text-align: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-right: 10px;
-    cursor: pointer;
-}
-.title{
-    font-size: large;
-    padding-left: 20px;
-    padding-right: 20px;
-    cursor: default;
-}
-.contact-box{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    padding-bottom: 20px;
+
+.twitter, .telegram, .email{
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 44px;
+  height: 44px;
+  background: rgb(0, 153, 235);
+  text-align: center;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
 </style>
