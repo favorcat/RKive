@@ -124,6 +124,11 @@
 
         <!-- Game -->
         <!-- BTS WORLD Official -->
+        <a v-if="$store.state.currentAccount === 'BTSW_official'"
+        v-for="hash in btsw_official" :key="hash" class="tag" @click="$store.state.currentHash = hash"> {{ hash }} </a>
+        <!-- Rhythm Hive Official -->
+        <a v-if="$store.state.currentAccount === 'rhythmhive_twt'"
+        v-for="hash in rhythmhive_twt" :key="hash" class="tag" @click="$store.state.currentHash = hash"> {{ hash }} </a>
       </div>
     </div>
   </div>
